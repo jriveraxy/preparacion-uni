@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preparación UNI – Materiales Premium</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    header {
+      margin-bottom: 30px;
+    }
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      /* 16:9 Aspect Ratio → padding-bottom = 9/16 = 56.25% */
+      padding-bottom: 56.25%; /* mantiene proporción al cambiar tamaños */ :contentReference[oaicite:0]{index=0}
+      height: 0;
+      overflow: hidden;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .drive-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #4285F4;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    .drive-link:hover {
+      background: #3367D6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Bienvenido, Postulante a la UNI</h1>
+    <p>Mira este video y accede a los materiales premium para tu preparación</p>
+  </header>
+
+  <div class="video-container">
+    <!-- Embed YouTube video AJrVcx7DhJY -->
+    <iframe
+      src="https://www.youtube.com/embed/AJrVcx7DhJY"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe> <!-- uso de embed estándar de YouTube para videos responsivos :contentReference[oaicite:1]{index=1} -->
+  </div>
+
+  <!-- Botón hacia Google Drive: reemplaza FOLDER_ID por el ID de tu carpeta pública en Drive -->
+  <a class="drive-link"
+     href="https://drive.google.com/drive/folders/1bjLylcCStHhSv8TcrW0Cb84-1Mvns-pr?usp=drive_link"
+     target="_blank">
+    Acceder al Drive Premium
+  </a> <!-- enlace público de carpeta en Drive tras configurar “Cualquiera con el enlace” :contentReference[oaicite:2]{index=2} -->
+
+</body>
+</html>
