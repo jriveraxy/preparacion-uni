@@ -10,15 +10,13 @@
       padding: 20px;
       text-align: center;
       font-family: Arial, sans-serif;
-      /* Fondo con overlay semitransparente para bajar saturación */
-      background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                  url('Infraestructura Peruana.jpg') no-repeat center center fixed;
+      background: url('fondo-matematicas.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #222;
+      color: #fff;
     }
     header {
       margin-bottom: 30px;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.6);
       padding: 10px;
       border-radius: 8px;
     }
@@ -30,18 +28,15 @@
     .video-container {
       position: relative;
       width: 100%;
-      max-width: 800px;
+      max-width: 960px;
       margin: 0 auto 20px;
-      padding-bottom: 56.25%; /* 16:9 */
-      height: 0;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       border: 4px solid rgba(0,0,0,0.3);
       border-radius: 8px;
+      background-color: #000;
     }
     .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       border: none;
@@ -83,7 +78,7 @@
       src="https://www.youtube.com/embed/AJrVcx7DhJY"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
-    </iframe>
+    ></iframe>
   </div>
 
   <a class="drive-link"
