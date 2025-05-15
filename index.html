@@ -6,22 +6,26 @@
   <title>Preparación UNI – Materiales Premium</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
       margin: 0;
       padding: 20px;
       text-align: center;
+      font-family: Arial, sans-serif;
+      background: url('Infraestructura Peruana.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
     }
     header {
       margin-bottom: 30px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 8px;
     }
     .video-container {
       position: relative;
       width: 100%;
       max-width: 800px;
       margin: 0 auto 20px;
-      /* 16:9 Aspect Ratio → padding-bottom = 9/16 = 56.25% */
-      padding-bottom: 56.25%; /* mantiene proporción al cambiar tamaños */ :contentReference[oaicite:0]{index=0}
+      padding-bottom: 56.25%; /* 16:9 */
       height: 0;
       overflow: hidden;
     }
@@ -33,17 +37,27 @@
       height: 100%;
       border: none;
     }
-    .drive-link {
+    .drive-link,
+    .whatsapp-link {
       display: inline-block;
-      margin-top: 20px;
+      margin: 10px 5px;
       padding: 12px 24px;
-      background: #4285F4;
       color: white;
       text-decoration: none;
       border-radius: 4px;
+      font-weight: bold;
+    }
+    .drive-link {
+      background: #4285F4;
     }
     .drive-link:hover {
       background: #3367D6;
+    }
+    .whatsapp-link {
+      background: #25D366;
+    }
+    .whatsapp-link:hover {
+      background: #1ebe57;
     }
   </style>
 </head>
@@ -55,20 +69,24 @@
   </header>
 
   <div class="video-container">
-    <!-- Embed YouTube video AJrVcx7DhJY -->
     <iframe
       src="https://www.youtube.com/embed/AJrVcx7DhJY"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
-    </iframe> <!-- uso de embed estándar de YouTube para videos responsivos :contentReference[oaicite:1]{index=1} -->
+    </iframe>
   </div>
 
-  <!-- Botón hacia Google Drive: reemplaza FOLDER_ID por el ID de tu carpeta pública en Drive -->
   <a class="drive-link"
      href="https://drive.google.com/drive/folders/1bjLylcCStHhSv8TcrW0Cb84-1Mvns-pr?usp=drive_link"
      target="_blank">
     Acceder al Drive Premium
-  </a> <!-- enlace público de carpeta en Drive tras configurar “Cualquiera con el enlace” :contentReference[oaicite:2]{index=2} -->
+  </a>
+
+  <a class="whatsapp-link"
+     href="https://wa.link/9tmt52"
+     target="_blank">
+    Más información
+  </a>
 
 </body>
 </html>
