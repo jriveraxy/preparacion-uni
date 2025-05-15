@@ -5,18 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Preparación UNI – Materiales Premium</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      padding: 20px;
-      text-align: center;
+      padding: 0;
       font-family: Arial, sans-serif;
-      background: url('fondo-matematicas.jpg') no-repeat center center fixed;
-      background-size: cover;
+      height: 100%;
       color: #fff;
+    }
+    body {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                  url('https://images.unsplash.com/photo-1610484826967-9612eb7e9c8a?auto=format&fit=crop&w=1950&q=80') 
+                  no-repeat center center fixed;
+      background-size: cover;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
     }
     header {
       margin-bottom: 30px;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, 0.7);
       padding: 10px;
       border-radius: 8px;
     }
@@ -32,7 +39,7 @@
       margin: 0 auto 20px;
       aspect-ratio: 16 / 9;
       overflow: hidden;
-      border: 4px solid rgba(0,0,0,0.3);
+      border: 4px solid rgba(255,255,255,0.3);
       border-radius: 8px;
       background-color: #000;
     }
@@ -40,11 +47,12 @@
       width: 100%;
       height: 100%;
       border: none;
+      display: block;
     }
     .drive-link,
     .whatsapp-link {
       display: inline-block;
-      margin: 10px 5px;
+      margin: 10px 10px;
       padding: 12px 24px;
       color: white;
       text-decoration: none;
