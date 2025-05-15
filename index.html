@@ -60,7 +60,8 @@
       display: block;
     }
     .drive-link,
-    .whatsapp-link {
+    .whatsapp-link,
+    .whatsapp-link-2 {
       display: inline-block;
       margin: 10px 10px;
       padding: 12px 24px;
@@ -76,11 +77,17 @@
     .drive-link:hover {
       background: #3367D6;
     }
-    .whatsapp-link {
+    .whatsapp-link, .whatsapp-link-2 {
       background: #25D366;
     }
-    .whatsapp-link:hover {
+    .whatsapp-link:hover, .whatsapp-link-2:hover {
       background: #1ebe57;
+    }
+    .whatsapp-icon {
+      vertical-align: middle;
+      margin-right: 8px;
+      width: 20px;
+      height: 20px;
     }
   </style>
 </head>
@@ -99,6 +106,14 @@
     ></iframe>
   </div>
 
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/afwRAyt_UeA"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    ></iframe>
+  </div>
+
   <a class="drive-link"
      href="https://drive.google.com/drive/folders/1bjLylcCStHhSv8TcrW0Cb84-1Mvns-pr?usp=drive_link"
      target="_blank">
@@ -108,7 +123,15 @@
   <a class="whatsapp-link"
      href="https://wa.link/9tmt52"
      target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
     Más información
+  </a>
+
+  <a class="whatsapp-link-2"
+     href="https://wa.link/x5zsbe"
+     target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+    ASISTENCIA ACADÉMICA POR UN MES
   </a>
 
 </body>
