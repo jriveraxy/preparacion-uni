@@ -6,57 +6,148 @@
   <meta name="description" content="Materiales premium para postulantes a la UNI: videos explicativos, enlaces a Drive y asistencia académica">
   <title>Preparación UNI – Materiales Premium</title>
   <style>
+    /* Variables de color */
     :root {
       --primary-start: #4285F4;
       --primary-end: #3367D6;
       --whatsapp-start: #25D366;
       --whatsapp-end: #1ebe57;
-      --header-bg: rgba(0,0,0,0.7);
-      --text-bg: rgba(255,255,255,0.8);
-      --text-color: #000;
+      --overlay-opacity: 0.35;
+      --header-bg: rgba(0, 0, 0, 0.7);
       --shadow-color: #222;
     }
     * { box-sizing: border-box; }
-    html, body { margin:0; padding:0; width:100%; height:100%; font-family: Arial, sans-serif; background:#000; color:#fff; }
+    html, body { margin: 0; padding: 0; width: 100%; height: 100%; font-family: Arial, sans-serif; color: #fff; }
+    body { background: #000; }
     /* Background layers */
     body::before {
       content: '';
-      position: fixed; inset:0;
-      background: url('Infraestructura%20Peruana.jpg') center/cover fixed;
-      opacity:0.35; z-index:-3;
+      position: fixed; inset: 0;
+      background: url('Infraestructura%20Peruana.jpg') no-repeat center center fixed;
+      background-size: cover;
+      opacity: var(--overlay-opacity);
+      z-index: -3;
     }
-    .fondo-libros-top { position:fixed; inset:0; background:url('libros_top.png') center top/cover fixed; z-index:-2; pointer-events:none; }
+    .fondo-libros-top {
+      position: fixed; inset: 0;
+      background: url('libros_top.png') no-repeat center top fixed;
+      background-size: cover;
+      z-index: -2;
+      pointer-events: none;
+    }
     body::after {
       content: '';
-      position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
-      background:url('libros_cepre.png') center/contain no-repeat;
-      width:80vw; height:80vh; z-index:-1; pointer-events:none;
+      position: fixed;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: url('libros_cepre.png') no-repeat center center;
+      background-size: contain;
+      width: 80vw; height: 80vh;
+      z-index: -1; pointer-events: none;
     }
-    /* Layout */
-    .layout { display:flex; max-width:1200px; margin:20px auto; align-items:flex-start; justify-content:space-between; gap:20px; padding:0 10px; }
-    .cloud { flex:0 0 15%; background:var(--text-bg); color:var(--text-color); padding:15px; border-radius:20px; font-size:0.9em; line-height:1.4; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
-    .main-content { flex:1; }
-    header { background:var(--header-bg); padding:15px; border-radius:8px; text-align:center; margin-bottom:20px; }
-    header h1 { margin:0; font-size:2em; }
-    header p  { margin:5px 0 0; }
-    .video-container { width:100%; margin-bottom:20px; aspect-ratio:16/9; border:4px solid rgba(255,255,255,0.3); border-radius:8px; overflow:hidden; background:#000; }
-    .video-container iframe { width:100%; height:100%; border:0; }
-    .buttons { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:30px; }
-    .btn { display:inline-flex; align-items:center; justify-content:center; padding:14px 28px; font-size:1rem; font-weight:bold; color:#fff; text-decoration:none; border-radius:8px; box-shadow:0 6px var(--shadow-color); position:relative; overflow:hidden; transition:transform 0.2s, box-shadow 0.2s; }
-    .btn-drive { background:linear-gradient(to bottom, var(--primary-start), var(--primary-end)); }
-    .btn-ws    { background:linear-gradient(to bottom, var(--whatsapp-start), var(--whatsapp-end)); }
-    .btn img   { width:20px; height:20px; margin-right:8px; }
-    .btn:hover { transform:translateY(2px); box-shadow:0 4px var(--shadow-color); }
-    .btn::after { content:''; position:absolute; width:20px; height:20px; background:rgba(255,255,255,0.7); border-radius:50%; transform:translate(-50%,-50%) scale(0); pointer-events:none; transition:transform 0.6s,opacity 0.6s; }
-    .btn:active::after { transform:scale(4); opacity:0; }
-    .frase-cinta { background:var(--header-bg); border-left:6px solid var(--primary-start); padding:20px; font-size:1.4em; font-style:italic; max-width:800px; margin:40px auto; border-radius:10px; }
+    /* Layout with sidebars */
+    .layout {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      gap: 20px;
+    }
+    .sidebar {
+      flex: 0 0 20%;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      line-height: 1.4;
+      text-align: left;
+    }
+    .main-content {
+      flex: 1;
+    }
+    header {
+      margin-bottom: 20px;
+      background: var(--header-bg);
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    header h1 { margin: 0; font-size: 2em; }
+    header p  { margin: 5px 0 0; }
+    .video-container {
+      position: relative;
+      width: 100%;
+      margin-bottom: 20px;
+      aspect-ratio: 16 / 9;
+      border: 4px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+    }
+    .video-container iframe { width: 100%; height: 100%; border: 0; }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 6px var(--shadow-color);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-drive { background: linear-gradient(to bottom, var(--primary-start), var(--primary-end)); }
+    .btn-ws    { background: linear-gradient(to bottom, var(--whatsapp-start), var(--whatsapp-end)); }
+    .btn img   { width: 20px; height: 20px; margin-right: 8px; }
+    .btn:hover { transform: translateY(2px); box-shadow: 0 4px var(--shadow-color); }
+    /* Ripple animation */
+    @keyframes ripple { to { transform: scale(4); opacity: 0; } }
+    .btn::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      pointer-events: none;
+      opacity: 1;
+    }
+    .btn:active::after {
+      left: var(--ripple-x);
+      top: var(--ripple-y);
+      animation: ripple 0.6s ease-out;
+    }
+    .frase-cinta {
+      background: var(--header-bg);
+      border-left: 6px solid var(--primary-start);
+      padding: 20px;
+      font-size: 1.4em;
+      font-style: italic;
+      max-width: 800px;
+      margin: 40px auto;
+      border-radius: 10px;
+    }
   </style>
   <script>
     document.addEventListener('click', function(e) {
-      const btn = e.target.closest('.btn'); if(!btn) return;
+      const btn = e.target.closest('.btn');
+      if (!btn) return;
       const rect = btn.getBoundingClientRect();
-      btn.style.setProperty('--ripple-x', (e.clientX-rect.left)+'px');
-      btn.style.setProperty('--ripple-y', (e.clientY-rect.top)+'px');
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      btn.style.setProperty('--ripple-x', x + 'px');
+      btn.style.setProperty('--ripple-y', y + 'px');
     });
   </script>
 </head>
@@ -67,10 +158,10 @@
     <p>Mira este video y accede a los materiales premium para tu preparación</p>
   </header>
   <div class="layout">
-    <aside class="cloud">
-      <p>Y los que postularán por examen ordinario y tienen acceso al drive recuerden:</p>
+    <aside class="sidebar">
+      <strong>Y los que postularán por examen ordinario y tienen acceso al drive recuerden:</strong>
       <ol>
-        <li>En el examen de aptitud académica y cultura general con solo hacer correctamente todo RM y RV ya tienes 600 de 745 puntos que representa una nota mayor a 16. Si bien debes estudiar los cursos de humanidades para robar algunos puntos, lo ideal es que llegues a dominar rm y rv. Muchos que no tienen experiencia estudian horas de humanidades pero no es relevante en el puntaje final.</li>
+        <li>En el examen de aptitud académica y cultura general, resolviendo todo RM y RV, obtienes 600 de 745 puntos (nota &gt;16). Domina RM y RV; las humanidades aportan menos al puntaje final.</li>
       </ol>
     </aside>
     <div class="main-content">
@@ -90,9 +181,9 @@
         </div>
       </main>
     </div>
-    <aside class="cloud">
+    <aside class="sidebar">
       <ol start="2">
-        <li>Practica con los exámenes de admision anteriores, por lo menos de los últimos 20 años y también con los 1eros exámenes parciales, 2dos exámenes parciales y exámenes finales de cepreuni que son los que propone la misma uni, no tanto con las calificadas.</li>
+        <li>Practica con los exámenes de admisión de los últimos 20 años y los parciales y finales de cepreuni que propone la UNI.</li>
       </ol>
     </aside>
   </div>
