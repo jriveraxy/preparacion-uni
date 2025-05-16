@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Materiales premium para postulantes a la UNI: videos explicativos, enlaces a Drive y asistencia académica">
+  <meta name="description" content="Materiales premium para postulantes a la UNI: vídeos explicativos, enlaces a Drive y asistencia académica">
   <title>Preparación UNI – Materiales Premium</title>
   <style>
-    /* Variables de color */
     :root {
       --primary-color-start: #4285F4;
       --primary-color-end: #3367D6;
@@ -16,162 +15,94 @@
       --header-bg: rgba(0, 0, 0, 0.7);
       --btn-shadow: #222;
     }
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      height: 100%;
-      color: #fff;
-    }
-    body {
-      position: relative;
-      padding: 20px;
-      text-align: center;
-      background: #000;
-      box-sizing: border-box;
-    }
-    /* Fondos superpuestos */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: url('Infraestructura%20Peruana.jpg') no-repeat center center fixed;
-      background-size: cover;
-      opacity: var(--overlay-opacity);
-      z-index: -3;
-    }
-    .fondo-libros-top {
-      position: fixed;
-      inset: 0;
-      background: url('libros_top.png') no-repeat center top fixed;
-      background-size: cover;
-      z-index: -2;
-      pointer-events: none;
-    }
-    body::after {
-      content: '';
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      background: url('libros_cepre.png') no-repeat center center;
-      background-size: contain;
-      width: 80vw;
-      height: 80vh;
-      z-index: -1;
-      pointer-events: none;
-    }
-    header {
-      margin-bottom: 30px;
-      background-color: var(--header-bg);
-      padding: 10px;
-      border-radius: 8px;
-    }
+    html, body { margin: 0; padding: 0; height: 100%; font-family: Arial, sans-serif; color: #fff; overflow: hidden; }
+    body { position: relative; text-align: center; background: #000; }
+    /* Intro overlay full screen */
+    #intro-overlay { position: fixed; inset: 0; background: #000; display: flex; justify-content: center; align-items: center; z-index: 10000; }
+    #intro-video { width: 100vw; height: 100vh; object-fit: cover; }
+    /* Bubbles container */
+    #bubbles { position: fixed; inset: 0; pointer-events: none; z-index: 9999; overflow: hidden; }
+    .bubble { position: absolute; bottom: 0; background: rgba(255,255,255,0.7); border-radius: 50%; animation: rise 3s ease-out forwards; }
+    @keyframes rise { to { transform: translateY(-100vh) scale(1); opacity: 0; } }
+    /* Content hidden until intro ends */
+    .content { opacity: 0; visibility: hidden; transition: opacity 0.5s ease; }
+    .content.show { opacity: 1; visibility: visible; }
+    /* Background layers */
+    body::before { content: ''; position: fixed; inset: 0; background: url('Infraestructura%20Peruana.jpg') no-repeat center center fixed; background-size: cover; opacity: var(--overlay-opacity); z-index: -3; }
+    .fondo-libros-top { position: fixed; inset: 0; background: url('libros_top.png') no-repeat center top fixed; background-size: cover; z-index: -2; pointer-events: none; }
+    body::after { content: ''; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: url('libros_cepre.png') no-repeat center center; background-size: contain; width: 80vw; height: 80vh; z-index: -1; pointer-events: none; }
+    /* Main layout */
+    header { margin: 20px auto; background-color: var(--header-bg); padding: 10px; border-radius: 8px; max-width: 90%; }
     header h1 { margin: 0; font-size: 2em; }
-    header p { margin: 5px 0 0; }
-    main { max-width: 960px; margin: 0 auto; }
-    .video-container {
-      position: relative;
-      width: 100%;
-      margin-bottom: 20px;
-      aspect-ratio: 16 / 9;
-      border: 4px solid rgba(255,255,255,0.3);
-      border-radius: 8px;
-      overflow: hidden;
-      background: #000;
-    }
-    .video-container iframe { width: 100%; height: 100%; border: 0; }
+    header p  { margin: 5px 0 0; }
+    main { max-width: 960px; margin: 0 auto 40px; }
+    .video-container { position: relative; width: 100%; margin-bottom: 20px; aspect-ratio: 16/9; border: 4px solid rgba(255,255,255,0.3); border-radius: 8px; overflow: hidden; background: #000; }
+    .video-container iframe, .video-container video { width: 100%; height: 100%; border: 0; }
     .buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px; }
-    /* Botones con efecto ripple */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 28px;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      box-shadow: 0 6px var(--btn-shadow);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; font-size: 1rem; font-weight: bold; color: #fff; text-decoration: none; border-radius: 8px; box-shadow: 0 6px var(--btn-shadow); position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
     .btn-drive { background: linear-gradient(to bottom, var(--primary-color-start), var(--primary-color-end)); }
     .btn-ws    { background: linear-gradient(to bottom, var(--whatsapp-color-start), var(--whatsapp-color-end)); }
-    .btn img  { width: 20px; height: 20px; margin-right: 8px; }
+    .btn img { width: 20px; height: 20px; margin-right: 8px; }
     .btn:hover { transform: translateY(2px); box-shadow: 0 4px var(--btn-shadow); }
-    /* Ripple animation */
-    @keyframes ripple {
-      to { transform: scale(4); opacity: 0; }
-    }
-    .btn::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      pointer-events: none;
-      opacity: 1;
-    }
-    .btn:active::after {
-      left: var(--ripple-x);
-      top: var(--ripple-y);
-      animation: ripple 0.6s ease-out;
-    }
-    .frase-cinta {
-      background-color: var(--header-bg);
-      border-left: 6px solid var(--primary-color-start);
-      border-radius: 10px;
-      padding: 20px;
-      font-size: 1.4em;
-      font-style: italic;
-      max-width: 800px;
-      margin: 0 auto 40px;
-    }
+    .btn::after { content: ''; position: absolute; width: 20px; height: 20px; background: rgba(255, 255, 255, 0.7); border-radius: 50%; transform: translate(-50%, -50%) scale(0); pointer-events: none; opacity: 1; }
+    .btn:active::after { animation: ripple 0.6s ease-out; }
+    @keyframes ripple { to { transform: scale(4); opacity: 0; } }
+    .frase-cinta { background-color: var(--header-bg); border-left: 6px solid var(--primary-color-start); border-radius: 10px; padding: 20px; font-size: 1.4em; font-style: italic; max-width: 800px; margin: 0 auto 40px; }
   </style>
   <script>
-    // Calcular posición del clic para ripple
-    document.addEventListener('click', function(e) {
-      let btn = e.target.closest('.btn');
-      if (!btn) return;
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      btn.style.setProperty('--ripple-x', x + 'px');
-      btn.style.setProperty('--ripple-y', y + 'px');
+    document.addEventListener('DOMContentLoaded', () => {
+      const introVideo = document.getElementById('intro-video');
+      const overlay = document.getElementById('intro-overlay');
+      const bubbles = document.getElementById('bubbles');
+      const content = document.querySelector('.content');
+      introVideo.play();
+      introVideo.addEventListener('ended', () => {
+        // generate bubbles
+        for (let i = 0; i < 30; i++) {
+          const bubble = document.createElement('div');
+          bubble.className = 'bubble';
+          const size = Math.random() * 20 + 10;
+          bubble.style.width = size + 'px';
+          bubble.style.height = size + 'px';
+          bubble.style.left = Math.random() * 100 + 'vw';
+          bubbles.appendChild(bubble);
+        }
+        setTimeout(() => {
+          overlay.remove();
+          bubbles.remove();
+          content.classList.add('show');
+        }, 2000);
+      });
     });
   </script>
 </head>
 <body>
+  <div id="intro-overlay"><video id="intro-video" src="Vídeo sin título ‐ Hecho con Clipchamp (3).mp4" muted></video></div>
+  <div id="bubbles"></div>
   <div class="fondo-libros-top"></div>
-  <header>
-    <h1>Bienvenido, Postulante a la UNI</h1>
-    <p>Mira este video y accede a los materiales premium para tu preparación</p>
-  </header>
-  <main>
-    <section class="video-container" aria-label="Video Tour por el Drive">
-      <iframe title="Tour por el Drive" src="https://www.youtube.com/embed/AJrVcx7DhJY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </section>
-    <div class="buttons">
-      <a class="btn btn-drive" href="https://drive.google.com/drive/folders/1bjLylcCStHhSv8TcrW0Cb84-1Mvns-pr?usp=drive_link" target="_blank" aria-label="Acceder al Drive Premium">Acceder al Drive Premium</a>
-      <a class="btn btn-ws" href="https://wa.link/9tmt52" target="_blank" aria-label="Más información en WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">Más información
-      </a>
-    </div>
-    <section class="video-container" aria-label="Video Asistencia Académica por un Mes">
-      <iframe title="Asistencia Académica por un Mes" src="https://www.youtube.com/embed/afwRAyt_UeA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </section>
-    <div class="buttons">
-      <a class="btn btn-ws" href="https://wa.link/x5zsbe" target="_blank" aria-label="Asistencia Académica por un Mes en WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">ASISTENCIA ACADÉMICA POR UN MES
-      </a>
-    </div>
-  </main>
-  <footer class="frase-cinta">
-    “SI BUSCAS RESULTADOS DISTINTOS, NO HAGAS SIEMPRE LO MISMO”<br>– Albert Einstein
-  </footer>
+  <div class="content">
+    <header>
+      <h1>Bienvenido, Postulante a la UNI</h1>
+      <p>Mira este video y accede a los materiales premium para tu preparación</p>
+    </header>
+    <main>
+      <section class="video-container" aria-label="Video Tour por el Drive">
+        <iframe title="Tour por el Drive" src="https://www.youtube.com/embed/AJrVcx7DhJY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </section>
+      <div class="buttons">
+        <a class="btn btn-drive" href="https://drive.google.com/drive/folders/1bjLylcCStHhSv8TcrW0Cb84-1Mvns-pr?usp=drive_link" target="_blank">Acceder al Drive Premium</a>
+        <a class="btn btn-ws" href="https://wa.link/9tmt52" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">Más información</a>
+      </div>
+      <section class="video-container" aria-label="Video Asistencia Académica por un Mes">
+        <iframe title="Asistencia Académica por un Mes" src="https://www.youtube.com/embed/afwRAyt_UeA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </section>
+      <div class="buttons">
+        <a class="btn btn-ws" href="https://wa.link/x5zsbe" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">ASISTENCIA ACADÉMICA POR UN MES</a>
+      </div>
+    </main>
+    <footer class="frase-cinta">
+      “SI BUSCAS RESULTADOS DISTINTOS, NO HAGAS SIEMPRE LO MISMO”<br>– Albert Einstein
+    </footer>
+  </div>
 </body>
 </html>
