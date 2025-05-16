@@ -8,41 +8,28 @@
   <style>
     /* Variables de color */
     :root {
-      --primary-color-start: #4285F4;
-      --primary-color-end: #3367D6;
-      --whatsapp-color-start: #25D366;
-      --whatsapp-color-end: #1ebe57;
+      --primary-start: #4285F4;
+      --primary-end: #3367D6;
+      --whatsapp-start: #25D366;
+      --whatsapp-end: #1ebe57;
       --overlay-opacity: 0.35;
       --header-bg: rgba(0, 0, 0, 0.7);
-      --btn-shadow: #222;
+      --shadow-color: #222;
     }
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      height: 100%;
-      color: #fff;
-    }
-    body {
-      position: relative;
-      padding: 20px;
-      text-align: center;
-      background: #000;
-      box-sizing: border-box;
-    }
-    /* Fondos superpuestos */
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; width: 100%; height: 100%; font-family: Arial, sans-serif; color: #fff; }
+    body { background: #000; overflow: auto; }
+    /* Background layers */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: url('Infraestructura%20Peruana.jpg') no-repeat center center fixed;
       background-size: cover;
       opacity: var(--overlay-opacity);
       z-index: -3;
     }
     .fondo-libros-top {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: url('libros_top.png') no-repeat center top fixed;
       background-size: cover;
       z-index: -2;
@@ -50,100 +37,64 @@
     }
     body::after {
       content: '';
-      position: fixed;
-      top: 50%; left: 50%;
+      position: fixed; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       background: url('libros_cepre.png') no-repeat center center;
       background-size: contain;
-      width: 80vw;
-      height: 80vh;
-      z-index: -1;
-      pointer-events: none;
+      width: 80vw; height: 80vh;
+      z-index: -1; pointer-events: none;
     }
+    /* Layout with sidebars */
+    .layout {
+      display: flex; max-width: 1200px; margin: 0 auto; padding: 20px; gap: 20px;
+    }
+    .sidebar {
+      flex: 0 0 20%; background: rgba(0, 0, 0, 0.6); padding: 15px;
+      border-radius: 8px; font-size: 0.9em; line-height: 1.4; text-align: left;
+    }
+    .main-content { flex: 1; }
     header {
-      margin-bottom: 30px;
-      background-color: var(--header-bg);
-      padding: 10px;
-      border-radius: 8px;
+      margin: 0 auto 20px; background: var(--header-bg);
+      padding: 10px; border-radius: 8px; text-align: center; max-width: 90%;
     }
     header h1 { margin: 0; font-size: 2em; }
-    header p { margin: 5px 0 0; }
-    main { max-width: 960px; margin: 0 auto; }
+    header p  { margin: 5px 0 0; }
     .video-container {
-      position: relative;
-      width: 100%;
-      margin-bottom: 20px;
-      aspect-ratio: 16 / 9;
-      border: 4px solid rgba(255,255,255,0.3);
-      border-radius: 8px;
-      overflow: hidden;
-      background: #000;
+      position: relative; width: 100%; margin-bottom: 20px;
+      aspect-ratio: 16 / 9; border: 4px solid rgba(255,255,255,0.3);
+      border-radius: 8px; overflow: hidden; background: #000;
     }
     .video-container iframe { width: 100%; height: 100%; border: 0; }
-    .buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px; }
-    /* Botones con efecto ripple */
+    .buttons {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 10px; margin-bottom: 30px;
+    }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 28px;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      box-shadow: 0 6px var(--btn-shadow);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 14px 28px; font-size: 1rem; font-weight: bold;
+      color: #fff; text-decoration: none; border-radius: 8px;
+      box-shadow: 0 6px var(--shadow-color); position: relative;
+      overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
     }
-    .btn-drive { background: linear-gradient(to bottom, var(--primary-color-start), var(--primary-color-end)); }
-    .btn-ws    { background: linear-gradient(to bottom, var(--whatsapp-color-start), var(--whatsapp-color-end)); }
-    .btn img  { width: 20px; height: 20px; margin-right: 8px; }
-    .btn:hover { transform: translateY(2px); box-shadow: 0 4px var(--btn-shadow); }
-    /* Ripple animation */
-    @keyframes ripple {
-      to { transform: scale(4); opacity: 0; }
-    }
+    .btn-drive { background: linear-gradient(to bottom, var(--primary-start), var(--primary-end)); }
+    .btn-ws    { background: linear-gradient(to bottom, var(--whatsapp-start), var(--whatsapp-end)); }
+    .btn img   { width: 20px; height: 20px; margin-right: 8px; }
+    .btn:hover { transform: translateY(2px); box-shadow: 0 4px var(--shadow-color); }
     .btn::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      pointer-events: none;
-      opacity: 1;
+      content: ''; position: absolute; width: 20px; height: 20px;
+      background: rgba(255,255,255,0.7); border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0); pointer-events: none;
+      opacity: 1; transition: transform 0.6s, opacity 0.6s;
     }
     .btn:active::after {
-      left: var(--ripple-x);
-      top: var(--ripple-y);
-      animation: ripple 0.6s ease-out;
+      transform: scale(4); opacity: 0;
     }
     .frase-cinta {
-      background-color: var(--header-bg);
-      border-left: 6px solid var(--primary-color-start);
-      border-radius: 10px;
-      padding: 20px;
-      font-size: 1.4em;
-      font-style: italic;
-      max-width: 800px;
-      margin: 0 auto 40px;
+      background: var(--header-bg); border-left: 6px solid var(--primary-start);
+      padding: 20px; font-size: 1.4em; font-style: italic;
+      max-width: 800px; margin: 40px auto; border-radius: 10px;
     }
   </style>
-  <script>
-    // Calcular posición del clic para ripple
-    document.addEventListener('click', function(e) {
-      let btn = e.target.closest('.btn');
-      if (!btn) return;
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      btn.style.setProperty('--ripple-x', x + 'px');
-      btn.style.setProperty('--ripple-y', y + 'px');
-    });
-  </script>
 </head>
 <body>
   <div class="fondo-libros-top"></div>
@@ -151,25 +102,36 @@
     <h1>Bienvenido, Postulante a la UNI</h1>
     <p>Mira este video y accede a los materiales premium para tu preparación</p>
   </header>
-  <main>
-    <section class="video-container" aria-label="Video Tour por el Drive">
-      <iframe title="Tour por el Drive" src="https://www.youtube.com/embed/AJrVcx7DhJY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </section>
-    <div class="buttons">
-      <a class="btn btn-drive" href="https://drive.google.com/drive/folders/1bjLylcCStHhSv8TcrW0Cb84-1Mvns-pr?usp=drive_link" target="_blank" aria-label="Acceder al Drive Premium">Acceder al Drive Premium</a>
-      <a class="btn btn-ws" href="https://wa.link/9tmt52" target="_blank" aria-label="Más información en WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">Más información
-      </a>
+  <div class="layout">
+    <aside class="sidebar">
+      <p>Y los que postularán por examen ordinario y tienen acceso al drive recuerden:</p>
+      <ol>
+        <li>En el examen de aptitud académica y cultura general con solo hacer correctamente todo RM y RV ya tienes 600 de 745 puntos que representa una nota mayor a 16. Si bien debes estudiar los cursos de humanidades para robar algunos puntos, lo ideal es que llegues a dominar rm y rv. Muchos que no tienen experiencia estudian horas de humanidades pero no es relevante en el puntaje final.</li>
+      </ol>
+    </aside>
+    <div class="main-content">
+      <main>
+        <section class="video-container" aria-label="Video Tour por el Drive">
+          <iframe title="Tour por el Drive" src="https://www.youtube.com/embed/AJrVcx7DhJY" allowfullscreen></iframe>
+        </section>
+        <div class="buttons">
+          <a class="btn btn-drive" href="https://drive.google.com/drive/folders/1bjLylcCStHhSv8TcrW0Cb84-1Mvns-pr" target="_blank">Acceder al Drive Premium</a>
+          <a class="btn btn-ws" href="https://wa.link/9tmt52" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">Más información</a>
+        </div>
+        <section class="video-container" aria-label="Video Asistencia Académica por un Mes">
+          <iframe title="Asistencia Académica por un Mes" src="https://www.youtube.com/embed/afwRAyt_UeA" allowfullscreen></iframe>
+        </section>
+        <div class="buttons">
+          <a class="btn btn-ws" href="https://wa.link/x5zsbe" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">ASISTENCIA ACADÉMICA POR UN MES</a>
+        </div>
+      </main>
     </div>
-    <section class="video-container" aria-label="Video Asistencia Académica por un Mes">
-      <iframe title="Asistencia Académica por un Mes" src="https://www.youtube.com/embed/afwRAyt_UeA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </section>
-    <div class="buttons">
-      <a class="btn btn-ws" href="https://wa.link/x5zsbe" target="_blank" aria-label="Asistencia Académica por un Mes en WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">ASISTENCIA ACADÉMICA POR UN MES
-      </a>
-    </div>
-  </main>
+    <aside class="sidebar">
+      <ol start="2">
+        <li>Practica con los exámenes de admision anteriores, por lo menos de los últimos 20 años y también con los 1eros exámenes parciales, 2dos exámenes parciales y exámenes finales de cepreuni que son los que propone la misma uni, no tanto con las calificadas.</li>
+      </ol>
+    </aside>
+  </div>
   <footer class="frase-cinta">
     “SI BUSCAS RESULTADOS DISTINTOS, NO HAGAS SIEMPRE LO MISMO”<br>– Albert Einstein
   </footer>
