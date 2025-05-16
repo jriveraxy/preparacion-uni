@@ -21,10 +21,7 @@
       padding: 0;
       font-family: Arial, sans-serif;
       color: #fff;
-      background: #000;
-    }
-    body {
-      box-sizing: border-box;
+      /* quitar fondo negro para mostrar solo el fondo superpuesto */
     }
     /* Fondos superpuestos */
     body::before {
@@ -61,7 +58,7 @@
       margin-bottom: 30px;
       background-color: var(--header-bg);
       padding: 20px;
-      padding-left: 100px; /* espacio para el logo */
+      padding-left: 120px; /* espacio para logo cuadrado un poco más grande */
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -71,18 +68,22 @@
       position: absolute;
       top: 50%;
       left: 20px;
+      width: 100px;  /* tamaño regular */
+      height: 100px; /* cuadrado */
       transform-style: preserve-3d;
-      width: 80px;
-      height: 80px;
-      animation: spin3d 5s linear infinite;
+      animation: spin3d 6s linear infinite;
     }
     @keyframes spin3d {
-      from { transform: perspective(200px) rotateY(0deg) rotateX(0deg); }
-      to   { transform: perspective(200px) rotateY(360deg) rotateX(360deg); }
+      from { transform: perspective(300px) rotateY(0deg) rotateX(0deg); }
+      to   { transform: perspective(300px) rotateY(360deg) rotateX(360deg); }
     }
     header h1 { margin: 0; font-size: 2em; }
     header p  { margin: 5px 0 0; }
-    main { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
     .video-container {
       position: relative;
       width: 100%;
@@ -91,7 +92,7 @@
       border: 4px solid rgba(255,255,255,0.3);
       border-radius: 8px;
       overflow: hidden;
-      background: #000;
+      background: transparent;
     }
     .video-container iframe { width: 100%; height: 100%; border: 0; }
     .buttons {
@@ -159,14 +160,14 @@
   </header>
   <main>
     <section class="video-container" aria-label="Video Tour por el Drive">
-      <iframe title="Tour por el Drive" src="https://www.youtube.com/embed/AJrVcx7DhJY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe title="Tour por el Drive" src="https://www.youtube.com/embed/AJrVcx7DhJY" allowfullscreen></iframe>
     </section>
     <div class="buttons">
       <a class="btn btn-drive" href="https://drive.google.com/drive/folders/1bjLylcCStHhSv8TcrW0Cb84-1Mvns-pr" target="_blank">Acceder al Drive Premium</a>
       <a class="btn btn-ws" href="https://wa.link/9tmt52" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">Más información</a>
     </div>
     <section class="video-container" aria-label="Video Asistencia Académica por un Mes">
-      <iframe title="Asistencia Académica por un Mes" src="https://www.youtube.com/embed/afwRAyt_UeA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe title="Asistencia Académica por un Mes" src="https://www.youtube.com/embed/afwRAyt_UeA" allowfullscreen></iframe>
     </section>
     <div class="buttons">
       <a class="btn btn-ws" href="https://wa.link/x5zsbe" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">ASISTENCIA ACADÉMICA POR UN MES</a>
