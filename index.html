@@ -3,8 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Materiales premium para postulantes a la UNI: videos explicativos, enlaces a Drive y asistencia académica">
   <title>Preparación UNI – Materiales Premium</title>
   <style>
+    /* Variables de color */
+    :root {
+      --primary-color-start: #4285F4;
+      --primary-color-end: #3367D6;
+      --whatsapp-color-start: #25D366;
+      --whatsapp-color-end: #1ebe57;
+      --overlay-opacity: 0.35;
+      --header-bg: rgba(0, 0, 0, 0.7);
+      --btn-shadow: #222;
+    }
     html, body {
       margin: 0;
       padding: 0;
@@ -14,168 +25,160 @@
     }
     body {
       position: relative;
-      background: #000;
       padding: 20px;
-      box-sizing: border-box;
       text-align: center;
+      background: #000;
+      box-sizing: border-box;
     }
+    /* Fondos superpuestos */
     body::before {
-      content: "";
+      content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      inset: 0;
       background: url('Infraestructura%20Peruana.jpg') no-repeat center center fixed;
       background-size: cover;
-      opacity: 0.35;
+      opacity: var(--overlay-opacity);
       z-index: -3;
     }
-    body::after {
-      content: "";
+    .fondo-libros-top {
       position: fixed;
-      top: 50%;
-      left: 50%;
+      inset: 0;
+      background: url('libros_top.png') no-repeat center top fixed;
+      background-size: cover;
+      z-index: -2;
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       background: url('libros_cepre.png') no-repeat center center;
       background-size: contain;
       width: 80vw;
       height: 80vh;
-      opacity: 1;
       z-index: -1;
-      pointer-events: none;
-    }
-    .fondo-libros-top {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: url('libros_top.png') no-repeat center top fixed;
-      background-size: cover;
-      opacity: 1;
-      z-index: -2;
       pointer-events: none;
     }
     header {
       margin-bottom: 30px;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: var(--header-bg);
       padding: 10px;
       border-radius: 8px;
     }
-    header h1,
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
     header p {
-      color: #fff;
-      margin: 5px;
+      margin: 5px 0 0;
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
     }
     .video-container {
       position: relative;
       width: 100%;
-      max-width: 960px;
-      margin: 0 auto 20px;
+      margin-bottom: 20px;
       aspect-ratio: 16 / 9;
-      overflow: hidden;
       border: 4px solid rgba(255,255,255,0.3);
       border-radius: 8px;
-      background-color: #000;
+      overflow: hidden;
+      background: #000;
     }
     .video-container iframe {
       width: 100%;
       height: 100%;
-      border: none;
-      display: block;
+      border: 0;
     }
-    .drive-link,
-    .whatsapp-link,
-    .whatsapp-link-2 {
-      display: inline-block;
-      margin: 10px 10px;
-      padding: 12px 24px;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 14px 28px;
+      font-size: 1rem;
       font-weight: bold;
-      transition: background 0.3s;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 6px var(--btn-shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .drive-link {
-      background: #4285F4;
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: left 0.3s;
     }
-    .drive-link:hover {
-      background: #3367D6;
+    .btn:active::after {
+      left: 0;
+      transition: left 0s;
     }
-    .whatsapp-link, .whatsapp-link-2 {
-      background: #25D366;
+    .btn:hover {
+      transform: translateY(2px);
+      box-shadow: 0 4px var(--btn-shadow);
     }
-    .whatsapp-link:hover, .whatsapp-link-2:hover {
-      background: #1ebe57;
+    .btn-drive {
+      background: linear-gradient(to bottom, var(--primary-color-start), var(--primary-color-end));
     }
-    .whatsapp-icon {
-      vertical-align: middle;
-      margin-right: 8px;
+    .btn-ws {
+      background: linear-gradient(to bottom, var(--whatsapp-color-start), var(--whatsapp-color-end));
+    }
+    .btn img {
       width: 20px;
       height: 20px;
+      margin-right: 8px;
     }
     .frase-cinta {
-      margin-top: 40px;
-      background-color: rgba(0, 0, 0, 0.7);
-      border-left: 6px solid #4285F4;
+      background-color: var(--header-bg);
+      border-left: 6px solid var(--primary-color-start);
+      border-radius: 10px;
       padding: 20px;
       font-size: 1.4em;
       font-style: italic;
       max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      border-radius: 10px;
+      margin: 0 auto 40px;
     }
   </style>
 </head>
 <body>
   <div class="fondo-libros-top"></div>
-
   <header>
     <h1>Bienvenido, Postulante a la UNI</h1>
     <p>Mira este video y accede a los materiales premium para tu preparación</p>
   </header>
-
-  <div class="video-container">
-    <iframe
-      src="https://www.youtube.com/embed/AJrVcx7DhJY"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    ></iframe>
-  </div>
-
-  <a class="drive-link"
-     href="https://drive.google.com/drive/folders/1bjLylcCStHhSv8TcrW0Cb84-1Mvns-pr?usp=drive_link"
-     target="_blank">
-    Acceder al Drive Premium
-  </a>
-
-  <a class="whatsapp-link"
-     href="https://wa.link/9tmt52"
-     target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
-    Más información
-  </a>
-
-  <div class="video-container">
-    <iframe
-      src="https://www.youtube.com/embed/afwRAyt_UeA"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    ></iframe>
-  </div>
-
-  <a class="whatsapp-link-2"
-     href="https://wa.link/x5zsbe"
-     target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
-    ASISTENCIA ACADÉMICA POR UN MES
-  </a>
-
-  <div class="frase-cinta">
+  <main>
+    <section class="video-container" aria-label="Video Tour por el Drive">
+      <iframe title="Tour por el Drive" src="https://www.youtube.com/embed/AJrVcx7DhJY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+    <div class="buttons">
+      <a class="btn btn-drive" href="https://drive.google.com/drive/folders/1bjLylcCStHhSv8TcrW0Cb84-1Mvns-pr?usp=drive_link" target="_blank" aria-label="Acceder al Drive Premium">Acceder al Drive Premium</a>
+      <a class="btn btn-ws" href="https://wa.link/9tmt52" target="_blank" aria-label="Más información en WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">Más información
+      </a>
+    </div>
+    <section class="video-container" aria-label="Video Asistencia Académica por un Mes">
+      <iframe title="Asistencia Académica por un Mes" src="https://www.youtube.com/embed/afwRAyt_UeA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+    <div class="buttons">
+      <a class="btn btn-ws" href="https://wa.link/x5zsbe" target="_blank" aria-label="Asistencia Académica por un Mes en WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">ASISTENCIA ACADÉMICA POR UN MES
+      </a>
+    </div>
+  </main>
+  <footer class="frase-cinta">
     “SI BUSCAS RESULTADOS DISTINTOS, NO HAGAS SIEMPRE LO MISMO”<br>– Albert Einstein
-  </div>
-
+  </footer>
 </body>
 </html>
